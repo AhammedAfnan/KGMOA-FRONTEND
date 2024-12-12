@@ -1,6 +1,5 @@
 import { API_BASE_URL } from "./config";
 
-
 export async function registerUser(data) {
     try {
       const response = await fetch(`${API_BASE_URL}/register`, {
