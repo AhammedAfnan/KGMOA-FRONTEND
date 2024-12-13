@@ -1,20 +1,65 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import QrCode from "react-qr-code";
-import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { API_BASE_URL } from "../services/config";
 
 export default function QRCode() {
+  const location = useLocation();
   const navigate = useNavigate();
-  const qrValue = JSON.stringify({
-    // id: uuidv4(),
-    // timestamp: new Date().toISOString(),
-  });
-
+  const formData = location.state?.formData || {}; // Extract formData from state
+  const userName = formData?.name || "defaultUser"; // Fallback to 'defaultUser'
+  const qrValue = JSON.stringify({ userName, timestamp: new Date().toISOString() });
   const containerRef = useRef(null);
 
+  // Save the QR code to the database
+  useEffect(() => {
+    const saveQRCodeToDatabase = async (qrImage) => {
+      try {
+        const response = await axios.post(`${API_BASE_URL}/save-qr`, { 
+          userName,
+          qrCodeImage: qrImage // Send the base64 image to the backend
+        });
+        console.log("QR Code saved successfully!", response.data);
+      } catch (error) {
+        console.error("Error saving QR Code:", error);
+      }
+    };
+
+    // Generate the QR code image and save it to the database
+    const generateAndSaveQRCode = () => {
+      const svg = containerRef.current.querySelector("svg");
+      if (!svg) {
+        console.error("Error: QR Code SVG not found!");
+        return;
+      }
+
+      const svgData = new XMLSerializer().serializeToString(svg);
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d");
+      const img = new Image();
+
+      img.onload = () => {
+        canvas.width = img.width;
+        canvas.height = img.height;
+        ctx.drawImage(img, 0, 0);
+        const pngFile = canvas.toDataURL("image/png"); // Base64 image string
+
+        // Save the QR code to the backend
+        saveQRCodeToDatabase(pngFile);
+      };
+
+      img.src = `data:image/svg+xml;base64,${btoa(svgData)}`;
+    };
+
+    generateAndSaveQRCode();
+  }, [userName]);
+
+  // Function to download the QR code
   const downloadQRCode = () => {
-    const svg = containerRef.current.querySelector("svg"); // Locate the SVG inside the wrapper div
+    const svg = containerRef.current.querySelector("svg");
     if (!svg) {
-      console.error("SVG not found!");
+      console.error("Error: QR Code SVG not found!");
       return;
     }
 
@@ -31,18 +76,21 @@ export default function QRCode() {
 
       const link = document.createElement("a");
       link.href = pngFile;
-      link.download = "qr-code.png";
+      link.download = `${userName}_qr-code.png`; // Use dynamic username
       link.click();
     };
 
     img.src = `data:image/svg+xml;base64,${btoa(svgData)}`;
   };
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       <h1 className="text-2xl font-bold text-black mb-6">
-        You have Registered Successfully
+        Registration Successful
       </h1>
-      <QrCode value={qrValue} />
+      <div ref={containerRef}>
+        <QrCode value={qrValue} />
+      </div>
       <div className="mt-6 flex space-x-4">
         <button
           onClick={downloadQRCode}
