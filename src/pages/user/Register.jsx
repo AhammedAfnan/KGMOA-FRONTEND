@@ -9,7 +9,7 @@ export default function Register() {
   const fieldDetails = {
     name: { type: "text", placeholder: "Enter your name" },
     place: { type: "text", placeholder: "Enter your place" },
-    kmc: { type: "number", placeholder: "Enter KMC number" },
+    kmc : { type: "number", placeholder: "Enter KMC number" },
     mobile: { type: "tel", placeholder: "Enter your mobile number" },
     regTarrif: {
       type: "select",

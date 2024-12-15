@@ -1,17 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useReactTable, getCoreRowModel } from "@tanstack/react-table";
 import { flexRender } from "@tanstack/react-table";
+import {API_BASE_URL} from '../../services/config'
 
 const AdminTable = () => {
-  const data = [
-    { userId: 1, name: "John", place: "NY", kmcNo: "123", phone: "1234567890", regTarrif:"RC Couple", amount: "$200", paymentId: "PAY123" , qrCode:"" },
-    { userId: 2, name: "Doe", place: "LA", kmcNo: "456", phone: "0987654321", regTarrif:"RC Single", amount: "$300", paymentId: "PAY456", qrCode:"" },
-    { userId: 3, name: "Bilal", place: "NY", kmcNo: "123", phone: "1234567890", regTarrif:"Delegate Couple", amount: "$200", paymentId: "PAY123", qrCode:"" },
-    { userId: 4, name: "Raj", place: "LA", kmcNo: "456", phone: "0987654321", regTarrif:"Delegate Single", amount: "$300", paymentId: "PAY456", qrCode:"" },
-  ];
+  const [data, setData] = useState([])
+
+  useEffect(()=>{
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`${API_BASE_URL}/table-data`)
+        const tableData = await response.json()
+        setData(tableData)
+      } catch (error) {
+        console.error('Error fetching table data:',error)
+      }
+    }
+    fetchData();
+  },[])
 
   const columns = [
-    { accessorKey: "userId", header: "User ID" },
+    { accessorKey: "id", header: "User ID" },
     { accessorKey: "name", header: "Name" },
     { accessorKey: "place", header: "Place" },
     { accessorKey: "kmcNo", header: "KMC No." },
@@ -19,7 +28,17 @@ const AdminTable = () => {
     { accessorKey: "regTarrif", header: "Reg Tarrif" },
     { accessorKey: "amount", header: "Amount" },
     { accessorKey: "paymentId", header: "Payment ID" },
-    { accessorKey: "qrCode", header: "QR Code" },
+    {
+       accessorKey: "qrCode",
+      header: "QR Code",
+      cell:({getValue}) => {
+        <img 
+        src={getValue() || "default-qr.png"} 
+        alt="QR Code"
+        className="w-16 h-16"
+         />
+      }
+     },
   ];
 
   const table = useReactTable({
