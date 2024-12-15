@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { registerUser } from "../services/api";
-import { initiatePayment } from "../services/razorpay";
+import { registerUser } from "../../services/api";
+import { initiatePayment } from "../../services/razorpay";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 export default function Register() {
   const fields = ["name", "place", "kmc", "mobile", "regTarrif", "coDel"];
@@ -38,7 +37,6 @@ export default function Register() {
         ...prev,
         [name]: type === "checkbox" ? checked : value,
       };
-      console.log(updatedData); // Debug log
       return updatedData;
     });
   };
@@ -62,12 +60,12 @@ export default function Register() {
   };
 
   return (
-    <div className="flex h-screen justify-center items-center bg-gray-100">
-      <div className="w-2/5 flex flex-col items-center justify-center px-10">
-        <h2 className="text-3xl font-extrabold text-center mb-6 text-black">
+    <div className="flex min-h-screen justify-center items-center bg-gray-100 px-4">
+      <div className="w-full sm:w-3/4 md:w-2/3 lg:w-2/5 flex flex-col items-center justify-center px-4 sm:px-8">
+        <h2 className="text-2xl sm:text-3xl font-extrabold text-center mb-6 text-black">
           Doctor's Registration
         </h2>
-        <div className="w-full max-w-2xl bg-white p-8 rounded-lg shadow-lg">
+        <div className="w-full bg-white p-6 sm:p-8 rounded-lg shadow-lg">
           <form onSubmit={handleSubmit} className="space-y-4">
             {fields.map((field) => (
               <div key={field}>
@@ -127,7 +125,7 @@ export default function Register() {
             <div className="mt-6">
               <button
                 type="submit"
-                className="w-full py-2 mt-3 px-4 bg-black text-white font-bold rounded-lg focus:outline-none focus:ring focus:ring-gray-100"
+                className="w-full py-2 px-4 bg-black text-white font-bold rounded-lg focus:outline-none focus:ring focus:ring-gray-100 hover:bg-gray-800"
               >
                 Register
               </button>
@@ -136,5 +134,5 @@ export default function Register() {
         </div>
       </div>
     </div>
-  );
+  );  
 }
