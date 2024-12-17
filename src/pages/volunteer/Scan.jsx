@@ -24,6 +24,9 @@ const QRCodeScanPage = () => {
           onError={handleError}
           onScan={handleScan}
           style={{ width: "100%" }}
+          constraints={{
+            video: { facingMode: "environment" }, // Use the rear camera
+          }}
         />
       </div>
     </div>
