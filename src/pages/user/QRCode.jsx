@@ -1,15 +1,15 @@
-import { useEffect, useRef } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import QrCode from "react-qr-code";
-import axios from "axios";
-import { API_BASE_URL } from "../../services/config";
-
 export default function QRCode() {
   const location = useLocation();
   const navigate = useNavigate();
-  const formData = location.state?.formData || {}; // Extract formData from state
+  
+  // Extract formData from location.state and include userId
+  const formData = location.state?.formData || {};
   const userName = formData?.name || "defaultUser"; // Fallback to 'defaultUser'
-  const qrValue = JSON.stringify({ userName, timestamp: new Date().toISOString() });
+  const userId = formData?.userId || "defaultUserId"; // Fallback to 'defaultUserId'
+
+  // Include userId and timestamp in the QR code value
+  const qrValue = JSON.stringify({ userId, userName, timestamp: new Date().toISOString() });
+  
   const containerRef = useRef(null);
 
   // Save the QR code to the database
@@ -17,6 +17,7 @@ export default function QRCode() {
     const saveQRCodeToDatabase = async (qrImage) => {
       try {
         const response = await axios.post(`${API_BASE_URL}/save-qr`, { 
+          userId, 
           userName,
           qrCodeImage: qrImage // Send the base64 image to the backend
         });
@@ -53,7 +54,7 @@ export default function QRCode() {
     };
 
     generateAndSaveQRCode();
-  }, [userName]);
+  }, [userId, userName]); // Trigger effect when userId or userName changes
 
   // Function to download the QR code
   const downloadQRCode = () => {

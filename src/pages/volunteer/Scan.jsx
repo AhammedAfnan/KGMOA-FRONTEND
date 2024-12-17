@@ -2,11 +2,28 @@ import React from "react";
 import QrScanner from "react-qr-scanner";
 
 const QRCodeScanPage = () => {
+  const [scannedData, setScannedData] = useState(null);
+
   const handleScan = (data) => {
     if (data) {
-      alert(`QR Code Data: ${data}`);
+      try {
+        // Decode the scanned QR code data (which should be a JSON string)
+        const qrData = JSON.parse(data);
+
+        // Extract userId and other data from the QR code
+        const { userId, userName, timestamp } = qrData;
+
+        console.log("User ID:", userId);
+        console.log("User Name:", userName);
+        console.log("Timestamp:", timestamp);
+
+        setScannedData(qrData);
+      } catch (error) {
+        console.error("Error decoding QR code:", error);
+      }
     }
   };
+
 
   const handleError = (err) => {
     console.error(err);
