@@ -10,12 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@babel/runtime": "^7.26.0",
     "@tanstack/react-table": "^8.20.6",
     "axios": "^1.7.9",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-icons": "^5.4.0",
     "react-qr-code": "^2.0.15",
+    "react-qr-scanner": "^1.0.0-alpha.11",
     "react-razorpay": "^3.0.1",
     "react-router-dom": "^7.0.2",
     "react-toastify": "^10.0.6",
