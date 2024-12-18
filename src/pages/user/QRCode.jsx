@@ -1,3 +1,9 @@
+import { useEffect, useRef } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import QrCode from "react-qr-code";
+import axios from "axios";
+import { API_BASE_URL } from "../../services/config";
+
 export default function QRCode() {
   const location = useLocation();
   const navigate = useNavigate();
