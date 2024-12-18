@@ -1,23 +1,28 @@
 import React from "react";
 import QrScanner from "react-qr-scanner";
+import { useNavigate } from "react-router-dom";
+
 
 const QRCodeScanPage = () => {
   const [scannedData, setScannedData] = useState(null);
+  const navigate = useNavigate();
+
 
   const handleScan = (data) => {
     if (data) {
       try {
-        // Decode the scanned QR code data (which should be a JSON string)
+        // Decode the scanned QR code data
         const qrData = JSON.parse(data);
-
-        // Extract userId and other data from the QR code
+  
+        // Extract userId and other data
         const { userId, userName, timestamp } = qrData;
-
-        console.log("User ID:", userId);
-        console.log("User Name:", userName);
-        console.log("Timestamp:", timestamp);
-
+  
         setScannedData(qrData);
+  
+        // Navigate to the user's meal page
+        if (userId) {
+          navigate(`/meals/${userId}`); // Replace `/meals/:userId` with your actual route
+        }
       } catch (error) {
         console.error("Error decoding QR code:", error);
       }

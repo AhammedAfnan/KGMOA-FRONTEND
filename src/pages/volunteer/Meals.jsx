@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import MealCard from "../../components/admin/MealCard";
+import MealCard from "../../components/volunteer/MealCard";
 
 const MealsPage = () => {
   const [dates, setDates] = useState({ day1: "", day2: "" });
