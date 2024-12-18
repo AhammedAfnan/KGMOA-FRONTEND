@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import QrScanner from "react-qr-scanner";
 import { useNavigate } from "react-router-dom";
 
@@ -16,6 +16,7 @@ const QRCodeScanPage = () => {
   
         // Extract userId and other data
         const { userId, userName, timestamp } = qrData;
+
   
         setScannedData(qrData);
   
