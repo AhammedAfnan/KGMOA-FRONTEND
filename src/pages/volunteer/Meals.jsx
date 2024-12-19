@@ -37,7 +37,6 @@ const MealsPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form Data:", { dates, formState });
     alert("Form Submitted!");
   };
 

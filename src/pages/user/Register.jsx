@@ -44,7 +44,9 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await registerUser(formData);
+      const responseData = await registerUser(formData)
+
+      const userId = responseData.userId;      
       toast.success("Registration successful!");
       setFormData(
         fields.reduce((acc, field) => {
@@ -52,7 +54,7 @@ export default function Register() {
           return acc;
         }, {})
       );
-      initiatePayment(formData, navigate);
+      initiatePayment({...formData,userId},navigate)
     } catch (err) {
       console.error(err);
       toast.error(err.message);

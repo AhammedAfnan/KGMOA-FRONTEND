@@ -12,6 +12,7 @@ const AMOUNT = {
 
 
 export const initiatePayment = async (formData, navigate) => {
+
   try {
     const amount = formData.coDel ? (AMOUNT[formData.regTarrif] + 3000) * 100 : AMOUNT[formData.regTarrif] * 100
     // Call backend to create Razorpay order
@@ -43,7 +44,7 @@ export const initiatePayment = async (formData, navigate) => {
             );
             if (saveResponse.data.success) {
               toast.success("Payment Successful!");
-              navigate("/qr-code",{state:{formData}}); // Navigate after saving payment info
+              navigate("/qr-code", { state: formData})
             } else {
               toast.error(
                 "Failed to save payment information. Please contact support."
