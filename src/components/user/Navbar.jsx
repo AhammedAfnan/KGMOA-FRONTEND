@@ -10,7 +10,7 @@ export default function Navbar() {
             <li><a href="" className="font-bold">Conference 2025</a></li>
             <li><a href="" className="font-bold">Contact Us</a></li>
             <li><a href="" className="font-bold">About Us</a></li>
-            <li><a href="" className="font-bold">Admin</a></li>
+            <li><a href="/volunteer/scan" className="font-bold">Admin</a></li>
           </ul>
         </div>
       </nav>
