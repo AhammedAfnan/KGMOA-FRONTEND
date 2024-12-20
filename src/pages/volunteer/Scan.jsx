@@ -91,7 +91,7 @@ export default function QRCodeScanner() {
           const parsedResult = JSON.parse(result); // Parse the scanned data
           if (parsedResult?.userId) {
             setScanResult(parsedResult.userId);
-            navigate(`/meals?userId=${parsedResult.userId}`); // Navigate to meals page
+            navigate(`/volunteer/meals/${parsedResult.userId}`);
           } else {
             console.error("Invalid QR code: No userId found");
           }

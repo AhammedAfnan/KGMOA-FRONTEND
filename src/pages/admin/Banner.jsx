@@ -30,7 +30,9 @@ export default function Banner() {
   };
 
   const handleDelete = (index) => {
-    const confirmDelete = window.confirm("Are you sure you want to delete this banner?");
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this banner?"
+    );
     if (confirmDelete) {
       setBanners(banners.filter((_, i) => i !== index));
     }
@@ -39,9 +41,7 @@ export default function Banner() {
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center">
       <div className="w-full max-w-4xl text-center">
-        <h1 className="text-4xl font-bold text-gray-900 mb-6">
-          Banner List
-        </h1>
+        <h1 className="text-4xl font-bold text-gray-900 mb-6">Banner List</h1>
 
         {/* Banner List */}
         <div className="bg-white shadow-lg rounded-lg p-6">
@@ -82,8 +82,8 @@ export default function Banner() {
             ))
           )}
         </div>
-                {/* Add Banner */}
-                <div className="my-6">
+        {/* Add Banner */}
+        <div className="my-6">
           <label className="cursor-pointer px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-800">
             Add Banner
             <input

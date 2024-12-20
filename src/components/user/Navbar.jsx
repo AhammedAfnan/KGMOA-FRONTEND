@@ -1,6 +1,6 @@
 export default function Navbar() {
    return (
-      <nav className="bg-red-400 text-black p-6 flex justify-between items-center">
+      <nav className="bg-gray-600 text-black p-6 flex justify-between items-center">
         <div className="text-3xl font-extrabold">
           <a href="">KGMOA</a>
         </div>

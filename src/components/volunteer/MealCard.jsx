@@ -18,7 +18,7 @@ export default function MealCard({ day, date, onDateChange, formState, onCheckbo
               <label className="flex items-center" key={meal}>
                 <input
                   type="checkbox"
-                  checked={formState[meal.toLowerCase() + day.replace(" ", "")]}
+                  checked={formState?.[meal.toLowerCase() + day.replace(" ", "")] || false}
                   onChange={() => onCheckboxChange(meal.toLowerCase() + day.replace(" ", ""))}
                   className="mr-2 focus:ring focus:ring-purple-300"
                 />

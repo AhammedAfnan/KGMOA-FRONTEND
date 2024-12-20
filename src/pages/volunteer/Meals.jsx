@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MealCard from "../../components/volunteer/MealCard";
+import { API_BASE_URL } from "../../services/config";
+import { useParams, useNavigate } from "react-router-dom";
 
 const MealsPage = () => {
+  const { userId } = useParams();
+  const navigate = useNavigate();
   const [dates, setDates] = useState({ day1: "", day2: "" });
-  const [formState, setFormState] = useState({
+  const initialState = {
     breakfastDay1: false,
     lunchDay1: false,
     dinnerDay1: false,
@@ -12,7 +16,27 @@ const MealsPage = () => {
     dinnerDay2: false,
     kitReceived: false,
     checkIn: false,
-  });
+  };
+  const [formState, setFormState] = useState(initialState);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          `${API_BASE_URL}/get-meal-plan?userId=${userId}`
+        );
+        const data = await response.json();
+
+        if (data.success) {
+          setFormState(data.formState);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, [userId]);
 
   const handleSetDate = () => {
     const today = new Date();
@@ -32,18 +56,46 @@ const MealsPage = () => {
   };
 
   const handleCheckboxChange = (field) => {
-    setFormState({ ...formState, [field]: !formState[field] });
+    // Prevent toggling if the checkbox is already true
+    if (formState[field]) return;
+
+    setFormState((prevState) => ({
+      ...prevState,
+      [field]: !prevState[field],
+    }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert("Form Submitted!");
+
+    try {
+      const response = await fetch(`${API_BASE_URL}/save-meal-plan`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          userId, // Pass the userId
+          formState,
+        }),
+      });
+
+      if (response.ok) {
+        alert("Form Submitted and Saved!");
+        navigate("/volunteer/scan");
+      } else {
+        alert("Failed to save form.");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("An error occurred.");
+    }
   };
 
   return (
     <div className="min-h-screen bg-gray-300 p-8">
       {/* Page Heading */}
-      <h1 className="text-4xl font-bold text-center text-gray-600 mb-10">Meals Planner</h1>
+      <h1 className="text-4xl font-bold text-center text-gray-600 mb-10">
+        Meals Planner
+      </h1>
 
       {/* Set Date Button */}
       <div className="flex justify-center mb-10">
@@ -75,35 +127,32 @@ const MealsPage = () => {
         />
       </div>
 
-      {/* Additional Options Card */}
-      <div className="col-span-1 md:col-span-2 bg-white rounded-lg shadow-lg p-6 mt-6">
-        <h2 className="text-2xl font-semibold text-pink-700 mb-4">Additional Options</h2>
-        <div className="space-y-3">
-          <label className="flex items-center">
-            <input
-              type="checkbox"
-              checked={formState.kitReceived}
-              onChange={() => handleCheckboxChange("kitReceived")}
-              className="mr-2 focus:ring focus:ring-pink-300"
-            />
-            Kit Received
-          </label>
-          <label className="flex items-center">
-            <input
-              type="checkbox"
-              checked={formState.checkIn}
-              onChange={() => handleCheckboxChange("checkIn")}
-              className="mr-2 focus:ring focus:ring-pink-300"
-            />
-            Check In
-          </label>
-        </div>
-      </div>
+{/* Additional Options Card */}
+<div className="col-span-1 md:col-span-2 bg-white rounded-lg shadow-lg p-6 mt-6">
+  <h2 className="text-2xl font-semibold text-pink-700 mb-4">
+    Additional Options
+  </h2>
+  <div className="space-y-3">
+    {["kitReceived", "checkIn"].map((key) => (
+      <label key={key} className="flex items-center">
+        <input
+          type="checkbox"
+          checked={formState[key]}
+          disabled={formState[key]} // Disable if already clicked
+          onChange={() => handleCheckboxChange(key)}
+          className="mr-2 focus:ring focus:ring-pink-300"
+        />
+        {key === "kitReceived" ? "Kit Received" : "Check In"} {/* Human-readable labels */}
+      </label>
+    ))}
+  </div>
+</div>
+
 
       {/* Submit Button */}
       <div className="text-center mt-10">
         <button
-          type="submit"
+          type="button"
           onClick={handleSubmit}
           className="bg-green-500 text-white font-semibold px-8 py-3 rounded-lg shadow-lg hover:bg-green-600 transition-all"
         >
