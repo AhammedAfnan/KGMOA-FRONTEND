@@ -7,9 +7,6 @@ const AddNewsPage = () => {
     description: "",
   });
 
-//   const [successMessage, setSuccessMessage] = useState("");
-//   const [errorMessage, setErrorMessage] = useState("");
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setNewsData((prevState) => ({
@@ -20,8 +17,6 @@ const AddNewsPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // setSuccessMessage("");
-    // setErrorMessage("");
 
     try {
       const response = await fetch(`${API_BASE_URL}/add-news`, {
@@ -35,14 +30,12 @@ const AddNewsPage = () => {
       const data = await response.json();
 
       if (response.ok) {
-        setSuccessMessage("News added successfully!");
         setNewsData({ title: "", description: "" });
       } else {
         setErrorMessage(data.message || "Failed to add news.");
       }
     } catch (error) {
       console.error("Error adding news:", error);
-      setErrorMessage("An error occurred. Please try again.");
     }
   };
 
@@ -103,20 +96,6 @@ const AddNewsPage = () => {
             Submit
           </button>
         </div>
-
-        {/* Success Message */}
-        {/* {successMessage && (
-          <p className="text-green-600 font-medium mt-4 text-center">
-            {successMessage}
-          </p>
-        )} */}
-
-        {/* Error Message */}
-        {/* {errorMessage && (
-          <p className="text-red-600 font-medium mt-4 text-center">
-            {errorMessage}
-          </p>
-        )} */}
       </form>
     </div>
   );

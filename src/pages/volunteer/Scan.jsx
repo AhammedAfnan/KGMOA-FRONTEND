@@ -81,7 +81,11 @@ export default function QRCodeScanner() {
     const scanner = new Html5QrcodeScanner("reader", {
       qrbox: { width: 250, height: 250 },
       fps: 5,
-    });
+    },
+    {
+      // facingMode: { exact: "environment" } // Use the back camera
+    }
+  );
 
     scanner.render(
       (result) => {

@@ -16,6 +16,7 @@ export async function registerUser(data) {
     }
 
     const responseData = await response.json();  // Assuming the response is in JSON format
+    
     return responseData;  // Return the server response if everything goes fine
 
   } catch (error) {

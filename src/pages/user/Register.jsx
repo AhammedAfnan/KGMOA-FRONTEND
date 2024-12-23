@@ -25,7 +25,7 @@ export default function Register() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState(
     fields.reduce((acc, field) => {
-      acc[field] = "";
+      acc[field] = field === "coDel" ? false : ""; // Set coDel to false by default
       return acc;
     }, {})
   );
@@ -43,9 +43,10 @@ export default function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
+    try {      
+      
       const responseData = await registerUser(formData)
-
+      
       const userId = responseData.userId;      
       toast.success("Registration successful!");
       setFormData(

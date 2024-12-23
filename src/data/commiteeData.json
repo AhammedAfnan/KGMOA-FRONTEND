@@ -1,0 +1,173 @@
+{
+    "Organizing Committee": {
+      "Organizing Chairman": {
+        "Name": "Dr. Sampath Gunari"
+      },
+      "Organizing Co-Chairman": {
+        "Name": "Dr. Shivanand Mastiholi"
+      },
+      "Chief Patrons": [
+        {
+          "Name": "Dr. Kesarsingh Gundbowdi",
+          "Title": "Ex-KGMDA President"
+        },
+        {
+          "Name": "Dr. S.L. Lakkannavar",
+          "Title": "Ex-KGMOA President"
+        },
+        {
+          "Name": "Dr. Shashikant Bagewadi",
+          "Title": "Ex-KGMOA President"
+        },
+        {
+          "Name": "Dr. C.M. Taikoti",
+          "Title": "President, KGMOA, Vijayapura"
+        }
+      ],
+      "Organizing Secretaries": [
+        {
+          "Name": "Dr. Santosh Shetty"
+        },
+        {
+          "Name": "Dr. Parashuram Devamane"
+        }
+      ],
+      "Organizing Treasurers": [
+        {
+          "Name": "Dr. Basavaraj Kamadal"
+        },
+        {
+          "Name": "Dr. Anilkumar Shegunasi"
+        },
+        {
+          "Name": "Dr. Vijayakumar Katakdhond"
+        },
+        {
+          "Name": "Dr. Harish Pujari"
+        }
+      ],
+      "Organizing Vice-Presidents": [
+        {
+          "Name": "Dr. Jyoti Patil"
+        },
+        {
+          "Name": "Dr. Rajeshwan Golageri"
+        },
+        {
+          "Name": "Dr. Meenakshi Sonnad"
+        },
+        {
+          "Name": "Dr. M.B. Bradar"
+        }
+      ],
+      "Organizing Joint Secretaries": [
+        {
+          "Name": "Dr. Kavita D"
+        },
+        {
+          "Name": "Dr. Nandini D"
+        },
+        {
+          "Name": "Dr. Prakash Gotkhandki"
+        },
+        {
+          "Name": "Dr. Anil Rathod"
+        }
+      ],
+      "Internal Auditors": [
+        {
+          "Name": "Dr. Suresh Chavan"
+        },
+        {
+          "Name": "Dr. Ashok Jadhav"
+        }
+      ]
+    },
+    "Conference Committee Chairmans & Co-Chairmans": {
+      "Registration Committee": [
+        {
+          "Name": "Dr. A.G.Biratar"
+        },
+        {
+          "Name": "Dr. Sandeep Sajjan"
+        }
+      ],
+      "Reception Committee": [
+        {
+          "Name": "Dr. Krishnakumar Jadhav"
+        },
+        {
+          "Name": "Dr. Meenakshi Sonnad"
+        }
+      ],
+      "Scientific Committee": [
+        {
+          "Name": "Dr. Parashuram Devamane"
+        },
+        {
+          "Name": "Dr. Anand Zalaki"
+        }
+      ],
+      "Cultural Committee": [
+        {
+          "Name": "Dr. Shashikala Hiremani"
+        },
+        {
+          "Name": "Dr. Nandini D"
+        }
+      ],
+      "Stage Committee": [
+        {
+          "Name": "Dr. Sabir Patel"
+        },
+        {
+          "Name": "Dr. Parashuram Hittnalli"
+        }
+      ],
+      "Souvenir Committee": [
+        {
+          "Name": "Dr. S.M.Timmapur"
+        },
+        {
+          "Name": "Dr. Vijaykumar Katakdhond"
+        }
+      ],
+      "Transport Committee": [
+        {
+          "Name": "Dr. Anilkumar Shegunasi"
+        },
+        {
+          "Name": "Dr. Basavaraj Karmadal"
+        }
+      ],
+      "Accommodation Committee": [
+        {
+          "Name": "Dr. Santosh Shetty"
+                }
+      ],
+      "Advertisement Committee": [
+        {
+          "Name": "Dr. Sampath Gunari"
+                },
+        {
+          "Name": "Dr. Arati Kawale"
+        }
+      ],
+      "District Tourism Committee": [
+        {
+          "Name": "Dr. Satish Madhabhavi"
+        },
+        {
+          "Name": "Dr. Ramesh Rathod"
+      }
+      ],
+      "Co-Ordination Committee": [
+        {
+          "Name": "Dr. Shashikant Bagewadi"
+        },
+        {
+          "Name": "Dr. Sheetal Kinagi"
+        }
+      ]
+    }
+  }

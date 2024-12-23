@@ -12,7 +12,7 @@ const AMOUNT = {
 
 
 export const initiatePayment = async (formData, navigate) => {
-
+  
   try {
     const amount = formData.coDel ? (AMOUNT[formData.regTarrif] + 3000) * 100 : AMOUNT[formData.regTarrif] * 100
     // Call backend to create Razorpay order
