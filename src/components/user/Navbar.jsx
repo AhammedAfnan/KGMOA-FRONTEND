@@ -108,8 +108,18 @@ export default function Navbar() {
               </a>
             </li>
             <li>
+              <a href="/register" className="font-bold">
+                Register
+              </a>
+            </li>
+            <li>
               <a href="/volunteer/scan" className="font-bold block">
                 Admin
+              </a>
+            </li>
+            <li>
+              <a href="/volunteer/login" className="font-bold">
+                Volunteer
               </a>
             </li>
           </ul>
