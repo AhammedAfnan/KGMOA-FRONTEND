@@ -1,0 +1,53 @@
+{
+    "title":"Places to Visit Nearby",
+    "places":[
+        {
+            "name":"Golgumbaz",
+            "image":"/images/golgumbaz.jpeg"
+        },
+        {
+            "name":"Ibrahim Roza",
+            "image":"/images/roza.jpeg"
+        },
+        {
+            "name":"Asar Mahal",
+            "image":"/images/mahal.jpeg"
+        },
+        {
+            "name":"Gagan Mahal",
+            "image":"/images/gagan.jpeg"
+        },
+        {
+            "name":"Koodalasangama Aikya Mantap",
+            "image":"/images/koodal.jpeg"
+        },
+        {
+            "name":"Shivagiri",
+            "image":"/images/shiva.jpeg"
+        },
+        {
+            "name":"Almatti Dam",
+            "image":"/images/dam.jpeg"
+        },
+        {
+            "name":"370 Lingad Temple",
+            "image":"/images/temple.jpeg"
+        },
+        {
+            "name":"Mahakoot",
+            "image":"/images/koot.jpeg"
+        },
+        {
+            "name":"Badami Caves",
+            "image":"/images/cave.jpeg"
+        },
+        {
+            "name":"Aihole",
+            "image":"/images/aihole.jpeg"
+        },
+        {
+            "name":"Pattadkallu",
+            "image":"/images/kallu.jpeg"
+        }
+    ]
+}

@@ -14,7 +14,9 @@ const AMOUNT = {
 export const initiatePayment = async (formData, navigate) => {
   
   try {
-    const amount = formData.coDel ? (AMOUNT[formData.regTarrif] + 3000) * 100 : AMOUNT[formData.regTarrif] * 100
+    const amount = formData.coDel ? (AMOUNT[formData.regTarrif] + 3000) : AMOUNT[formData.regTarrif]
+    console.log('amount is :',amount);
+    
     // Call backend to create Razorpay order
     const paymentResponse = await axios.post(`${API_BASE_URL}/create-order`, {
       amount

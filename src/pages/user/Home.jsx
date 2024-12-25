@@ -69,7 +69,7 @@ export default function Home() {
           </div>
 
           {/* News Section */}
-          <div className="flex-1 w-full md:w-1/4 bg-blue-100 rounded-lg p-6 shadow-lg border border-gray-200 h-fit">
+          <div className="flex-1 w-full md:w-1/4 bg-white p-6 shadow-lg border border-black h-fit">
             <h3 className="text-xl font-bold text-center text-gray-800 mb-6">
               📰 Headlines
             </h3>

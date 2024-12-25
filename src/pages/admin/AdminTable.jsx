@@ -32,12 +32,14 @@ const AdminTable = () => {
       accessorKey: "qrCode",
       header: "QR Code",
       cell: ({ getValue }) => {
-        const qrCodeUrl = getValue();
+        const qrCodeUrl = getValue(); // Retrieve the QR code URL
+        return (
           <img
-            src={getValue()}
+            src={qrCodeUrl}
             alt="QR Code"
-            className="w-16 h-16"
+            className="w-16 h-16 mx-auto" // Styling as needed
           />
+        );
       },
     },
   ];
@@ -49,7 +51,7 @@ const AdminTable = () => {
   });
 
   return (
-    <div className="overflow-x-auto px-4">
+    <div className="overflow-x-auto px-4 mb-10">
       <table className="table-auto w-full border-collapse border border-gray-300">
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (

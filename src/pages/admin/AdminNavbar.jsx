@@ -18,7 +18,7 @@ export default function AdminNavbar() {
   };
 
   return (
-    <nav className="bg-gray-500 text-white shadow-lg">
+    <nav className="bg-black text-white shadow-lg">
       <div className="flex justify-between items-center px-4 py-3">
         {/* Logo or Title */}
         <h1 className="text-xl md:text-3xl font-bold">Admin Dashboard</h1>
@@ -58,7 +58,7 @@ export default function AdminNavbar() {
               </ul>
               <ul>
                 <li
-                  onClick={""}
+                  onClick={()=>navigate('/admin/login')}
                   className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
                 >
                   Logout
@@ -85,7 +85,7 @@ export default function AdminNavbar() {
               <a
                 href=""
                 className="block text-lg hover:underline hover:text-gray-300"
-                onClick={""}
+                onClick={()=>navigate('/admin/login')}
               >
                 Logout
               </a>
@@ -94,7 +94,7 @@ export default function AdminNavbar() {
               <a
                 href=""
                 className="block text-lg hover:underline hover:text-gray-300"
-                onClick={""}
+                onClick={()=>navigate("/admin/password")}
               >
                 Change Password
               </a>

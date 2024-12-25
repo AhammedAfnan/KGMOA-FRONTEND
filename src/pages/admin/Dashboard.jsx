@@ -11,7 +11,7 @@ export default function Dashboard() {
     { title: "Users Registered", count: 0 },
     { title: "Users Checked In", count: 0 },
     { title: "Users Recieved Kit", count: 0 },
-    { title: "Users Attended function", count: 8 },
+    { title: "Users Attended function", count: 0 },
   ])
 
 

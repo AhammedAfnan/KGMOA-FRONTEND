@@ -1,103 +1,125 @@
 {
-    "title": "Hotels & Lodges",
-    "hotels": [
-      {
-        "name": "The Fern Residency",
-        "address": "Athani Road, Vijayapura"
-      },
-      {
-        "name": "Hotel Le Grande",
-        "address": "Sainik School Road, Vijayapura"
-      },
-      {
-        "name": "Town Palace Hotel",
-        "address": "Sainik School Road, Vijayapura"
-      },
-      {
-        "name": "Kyriad Hotel",
-        "address": "Station Road, Vijayapura"
-
-      },
-      {
-        "name": "Hotel Madhuvan International",
-        "address": "Station Road, Vijayapura"
-      },
-      {
-        "name": "Hotel Basava Residency",
-        "address": "Station Road, Vijayapura"
-      },
-      {
-        "name": "Hotel Magis Inn",
-        "address": "Station Road, Vijayapura"
-      },
-      {
-        "name": "Hotel Kanishka International",
-        "address": "Rly Station Road, Vijayapura"
-      },
-      {
-        "name": "Hotel Ashoka Residency",
-        "address": "New College, Solapur Road, Vijayapura"
-      },
-      {
-        "name": "Hotel Royal Residency",
-        "address": "Station Road, Vijayapura"
-      },
-      {
-        "name": "Hotel Godavari Lodging & Boarding",
-        "address": "Athani Road, Vijayapura"
-      },
-      {
-        "name": "Hotel Shree Sai Prabhat Lodging",
-        "address": "Jamkhandi Road, Vijayapura"
-      },
-      {
-        "name": "Hotel Milan",
-        "address": "Solapur Road, Vijayapura"
-      },
-      {
-        "name": "Spoorti Resorts",
-        "address": "Athani-Solapur Ring Road, Vijayapura"
-      },
-      {
-        "name": "Hotel Pleasant Stay",
-        "address": "Solapur Road, Vijayapura"
-      },
-      {
-        "name": "Hotel Shashinga Residency",
-        "address": "Solapur-Vijayapura Bypass Road"
-      },
-      {
-        "name": "Hotel Kanishka International",
-        "address": "Station Road, Vijayapura"
-      },
-      {
-        "name": "Ashoka Village",
-        "address": "Vijayapura Road, Horti"
-      },
-      {
-        "name": "Hotel Navaratna International",
-        "address": "Station Road, Vijayapura"
-      },
-      {
-        "name": "Hotel Golden Heights",
-        "address": "Station Road, Vijayapura"
-      },
-      {
-        "name": "Galaxy Club & Hotel",
-        "address": "Cross Solapur Road, Vijayapura"
-      },
-      {
-        "name": "Hotel Ratna Palace",
-        "address": "Solapur Road, Vijayapura"
-      },
-      {
-        "name": "Hotel Ashoka Residency",
-        "address": "Adarsh Nagar, Vijayapura"
-      },
-      {
-        "name": "Hotel Heritage International",
-        "address": "Station Road, Vijayapura"
-      }
-    ]
-  }
-  
+  "title": "Hotels & Lodges",
+  "hotels": [
+    {
+      "name": "The Fern Residency",
+      "address": "Athani Road, Vijayapura",
+      "contact": "7947413606"
+    },
+    {
+      "name": "Hotel Le Grande",
+      "address": "Sainik School Road, Vijayapura",
+      "contact": "7942960655"
+    },
+    {
+      "name": "Town Palace Hotel",
+      "address": "Sainik School Road, Vijayapura",
+      "contact": "7380807071"
+    },
+    {
+      "name": "Kyriad Hotel",
+      "address": "Station Road, Vijayapura",
+      "contact": "9389020500"
+    },
+    {
+      "name": "Hotel Madhuvan International",
+      "address": "Station Road, Vijayapura",
+      "contact": "9341000999"
+    },
+    {
+      "name": "Hotel Basava Residency",
+      "address": "Station Road, Vijayapura",
+      "contact": "7947430112"
+    },
+    {
+      "name": "Hotel Magis Inn",
+      "address": "Station Road, Vijayapura",
+      "contact": "7383474362"
+    },
+    {
+      "name": "Hotel Kanishka International",
+      "address": "Rly Station Road, Vijayapura",
+      "contact": "7942968109"
+    },
+    {
+      "name": "Hotel Ashoka Residency",
+      "address": "New College, Solapur Road, Vijayapura",
+      "contact": "8485980814"
+    },
+    {
+      "name": "Hotel Royal Residency",
+      "address": "Station Road, Vijayapura",
+      "contact": "7947433774"
+    },
+    {
+      "name": "Hotel Godavari Lodging & Boarding",
+      "address": "Athani Road, Vijayapura",
+      "contact": "7383104177"
+    },
+    {
+      "name": "Hotel Shree Sai Prabhat Lodging",
+      "address": "Jamkhandi Road, Vijayapura",
+      "contact": "8147955742"
+    },
+    {
+      "name": "Hotel Milan",
+      "address": "Solapur Road, Vijayapura",
+      "contact": "7947103732"
+    },
+    {
+      "name": "Spoorti Resorts",
+      "address": "Athani-Solapur Ring Road, Vijayapura",
+      "contact": "7947105486"
+    },
+    {
+      "name": "Hotel Pleasant Stay",
+      "address": "Solapur Road, Vijayapura",
+      "contact": "7947200850"
+    },
+    {
+      "name": "Hotel Shashinga Residency",
+      "address": "Solapur-Vijayapura Bypass Road",
+      "contact": "7381632972"
+    },
+    {
+      "name": "Hotel Kanishka International",
+      "address": "Station Road, Vijayapura",
+      "contact": "7947111689"
+    },
+    {
+      "name": "Ashoka Village",
+      "address": "Vijayapura Road, Horti",
+      "contact": "8123036163"
+    },
+    {
+      "name": "Hotel Navaratna International",
+      "address": "Station Road, Vijayapura",
+      "contact": "7947161923"
+    },
+    {
+      "name": "Hotel Golden Heights",
+      "address": "Station Road, Vijayapura",
+      "contact": "7947130588"
+    },
+    {
+      "name": "Galaxy Club & Hotel",
+      "address": "Cross Solapur Road, Vijayapura",
+      "contact": "7947109305"
+    },
+    {
+      "name": "Hotel Ratna Palace",
+      "address": "Solapur Road, Vijayapura",
+      "contact": "7942683119"
+    },
+    {
+      "name": "Hotel Ashoka Residency",
+      "address": "Adarsh Nagar, Vijayapura",
+      "contact": "7947110931"
+    },
+    {
+      "name": "Hotel Heritage International",
+      "address": "Station Road, Vijayapura",
+      "contact": "7947148054"
+    }
+  ]
+}

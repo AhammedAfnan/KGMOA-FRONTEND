@@ -5,45 +5,64 @@ import axios from "axios";
 import { API_BASE_URL } from "../../services/config";
 
 export default function QRCode() {
-  
   const location = useLocation();
   const navigate = useNavigate();
 
-  const [hasSavedQR, setHasSavedQR] = useState(false); // Track if QR code has been saved
-  const [isSaving, setIsSaving] = useState(false); // Track saving state
-  const [errorMessage, setErrorMessage] = useState(""); // Track errors
+  const [hasSavedQR, setHasSavedQR] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const formData = location.state || {};  
+  const formData = location.state || {};
   const { userId, name: userName } = formData;
 
+  if (!userId || !userName) {
+    return null; // Early exit if user data is invalid
+  }
+
   const qrValue = JSON.stringify({
-    userId: userId || "defaultUserId",
-    userName: userName || "defaultUser",
+    userId: userId,
+    userName: userName,
     timestamp: new Date().toISOString(),
   });
 
   const containerRef = useRef(null);
+  const hasGeneratedRef = useRef(false);  // Ref to track if QR code has been generated
 
-  const saveQRCodeToDatabase = async (qrImage) => {
+  const dataURLtoFile = (dataUrl, filename) => {
+    const arr = dataUrl.split(",");
+    const mime = arr[0].match(/:(.*?);/)[1];
+    const bstr = atob(arr[1]);
+    let n = bstr.length;
+    const u8arr = new Uint8Array(n);
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new File([u8arr], filename, { type: mime });
+  };
+
+  const saveQRCodeToDatabase = async (file) => {
     try {
       setIsSaving(true);
-  
+
       // Create FormData and append the file
-      const formData = new FormData();
-      formData.append('userId', userId);
-      formData.append('userName', userName);
-      formData.append('file', qrImage);
-  
+      const uploadData = new FormData();
+      uploadData.append("userId", userId);
+      uploadData.append("userName", userName);
+      uploadData.append("file", file);
+
       // Upload the QR code image to Cloudinary
-      const uploadResponse = await axios.post(`${API_BASE_URL}/upload-cloudinary`, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-  
-      const cloudinaryUrl = uploadResponse.data.qrCodeUrl;
-  
-      setHasSavedQR(true); // Mark as saved
+      const uploadResponse = await axios.post(
+        `${API_BASE_URL}/upload-cloudinary`,
+        uploadData,
+        { headers: { "Content-Type": "multipart/form-data" } }
+      );
+
+      if (uploadResponse.data && uploadResponse.data.qrCodeUrl) {
+        setHasSavedQR(true);
+        setErrorMessage(""); // Clear errors on success
+      } else {
+        throw new Error("Invalid response from the server");
+      }
     } catch (error) {
       setErrorMessage("Failed to save QR Code. Please try again.");
       console.error("Error saving QR Code:", error);
@@ -51,53 +70,52 @@ export default function QRCode() {
       setIsSaving(false);
     }
   };
-    
 
-  const dataURLtoFile = (dataUrl, filename) => {
-    const arr = dataUrl.split(','), mime = arr[0].match(/:(.*?);/)[1];
-    const bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
-    while(n--) u8arr[n] = bstr.charCodeAt(n);
-    return new File([u8arr], filename, { type: mime });
-  };
-  
   const generateAndSaveQRCode = () => {
-    if (hasSavedQR) return; // Skip if already saved
-  
-    const svg = containerRef.current.querySelector("svg");
+    if (hasSavedQR || hasGeneratedRef.current) return;  // Avoid generating and saving again
+
+    const svg = containerRef.current?.querySelector("svg");
     if (!svg) {
-      console.error("Error: QR Code SVG not found!");
       setErrorMessage("Error generating QR Code. Please refresh the page.");
+      console.error("Error: QR Code SVG not found!");
       return;
     }
-  
+
     const svgData = new XMLSerializer().serializeToString(svg);
     const canvas = document.createElement("canvas");
     const ctx = canvas.getContext("2d");
     const img = new Image();
-  
+
     img.onload = () => {
       canvas.width = img.width;
       canvas.height = img.height;
       ctx.drawImage(img, 0, 0);
       const pngFile = canvas.toDataURL("image/png");
-  
-      // Convert data URL to File object
       const file = dataURLtoFile(pngFile, `${userName}_qr-code.png`);
-      saveQRCodeToDatabase(file); // Save QR code
+      saveQRCodeToDatabase(file);
+      hasGeneratedRef.current = true;  // Mark as generated
     };
-  
+
     img.src = `data:image/svg+xml;base64,${btoa(svgData)}`;
   };
 
   useEffect(() => {
-    generateAndSaveQRCode();
-  }, []);
+    // Only trigger QR code generation if necessary and no previous error
+    if (!hasSavedQR && !hasGeneratedRef.current) {
+      try {
+        generateAndSaveQRCode();
+      } catch (error) {
+        setErrorMessage("An error occurred while generating the QR Code.");
+        console.error(error);
+      }
+    }
+  }, [userId, userName, hasSavedQR]);  // Only depend on userId, userName, and hasSavedQR
 
   const downloadQRCode = () => {
-    const svg = containerRef.current.querySelector("svg");
+    const svg = containerRef.current?.querySelector("svg");
     if (!svg) {
-      console.error("Error: QR Code SVG not found!");
       setErrorMessage("Error generating QR Code for download.");
+      console.error("Error: QR Code SVG not found!");
       return;
     }
 
@@ -114,7 +132,7 @@ export default function QRCode() {
 
       const link = document.createElement("a");
       link.href = pngFile;
-      link.download = `${userName || "defaultUser"}_qr-code.png`;
+      link.download = `${userName}_qr-code.png`;
       link.click();
     };
 
@@ -127,7 +145,7 @@ export default function QRCode() {
         Registration Successful
       </h1>
 
-      {errorMessage && <div className="text-red-500 mb-4">{errorMessage}</div>}
+      {/* {errorMessage && <div className="text-red-500 mb-4">{errorMessage}</div>} */}
 
       {isSaving ? (
         <div className="text-gray-600 mb-4">Saving QR Code...</div>
