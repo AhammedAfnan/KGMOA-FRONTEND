@@ -127,27 +127,27 @@ const MealsPage = () => {
         />
       </div>
 
-{/* Additional Options Card */}
-<div className="col-span-1 md:col-span-2 bg-white rounded-lg shadow-lg p-6 mt-6">
-  <h2 className="text-2xl font-semibold text-pink-700 mb-4">
-    Additional Options
-  </h2>
-  <div className="space-y-3">
-    {["kitReceived", "checkIn"].map((key) => (
-      <label key={key} className="flex items-center">
-        <input
-          type="checkbox"
-          checked={formState[key]}
-          disabled={formState[key]} // Disable if already clicked
-          onChange={() => handleCheckboxChange(key)}
-          className="mr-2 focus:ring focus:ring-pink-300"
-        />
-        {key === "kitReceived" ? "Kit Received" : "Check In"} {/* Human-readable labels */}
-      </label>
-    ))}
-  </div>
-</div>
-
+      {/* Additional Options Card */}
+      <div className="col-span-1 md:col-span-2 bg-white rounded-lg shadow-lg p-6 mt-6">
+        <h2 className="text-2xl font-semibold text-pink-700 mb-4">
+          Additional Options
+        </h2>
+        <div className="space-y-3">
+          {["kitReceived", "checkIn"].map((key) => (
+            <label key={key} className="flex items-center">
+              <input
+                type="checkbox"
+                checked={formState[key]}
+                disabled={formState[key]} // Disable if already clicked
+                onChange={() => handleCheckboxChange(key)}
+                className="mr-2 focus:ring focus:ring-pink-300 accent-blue-500"
+              />
+              {key === "kitReceived" ? "Kit Received" : "Check In"}{" "}
+              {/* Human-readable labels */}
+            </label>
+          ))}
+        </div>
+      </div>
 
       {/* Submit Button */}
       <div className="text-center mt-10">

@@ -36,6 +36,7 @@ export default function AdminLogin() {
 
       if(response.ok){
         toast.success("Login Successfull");
+        localStorage.setItem("isAdminLoggedIn","true")
         navigate('/admin')
       }else{
         toast.error(data.message)

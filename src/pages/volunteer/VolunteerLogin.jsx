@@ -35,6 +35,7 @@ export default function VolunteerLogin() {
 
       if (response.ok) {
         toast.success("Login Successfull");
+        localStorage.setItem("isVolunteerLoggedIn", "true");
         navigate("/volunteer/scan");
       } else {
         toast.error(data.message);

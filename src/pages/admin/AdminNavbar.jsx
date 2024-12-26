@@ -11,6 +11,11 @@ export default function AdminNavbar() {
   const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
+  const handleLogout = () => {
+    localStorage.removeItem("isAdminLoggedIn")
+    navigate('/admin/login')
+  }
+
   const handleNavigate = (path) => {
     navigate(path);
     setDropdownOpen(false);
@@ -58,7 +63,7 @@ export default function AdminNavbar() {
               </ul>
               <ul>
                 <li
-                  onClick={()=>navigate('/admin/login')}
+                  onClick={handleLogout}
                   className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
                 >
                   Logout
@@ -85,7 +90,7 @@ export default function AdminNavbar() {
               <a
                 href=""
                 className="block text-lg hover:underline hover:text-gray-300"
-                onClick={()=>navigate('/admin/login')}
+                onClick={handleLogout}
               >
                 Logout
               </a>

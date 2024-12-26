@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { API_BASE_URL } from "../../services/config";
+import { useNavigate } from 'react-router-dom'
 
 const AddNewsPage = () => {
+  const navigate = useNavigate()
   const [newsData, setNewsData] = useState({
     title: "",
     description: "",
@@ -94,6 +96,13 @@ const AddNewsPage = () => {
             className="bg-blue-500 text-white font-semibold px-6 py-3 rounded-lg shadow-lg hover:bg-blue-600 transition-all"
           >
             Submit
+          </button>
+          <button
+            type="button"
+            onClick={()=>navigate('/admin')}
+            className="bg-red-500 ml-3 text-white font-semibold px-6 py-3 rounded-lg shadow-lg transition-all"
+          >
+            Back
           </button>
         </div>
       </form>

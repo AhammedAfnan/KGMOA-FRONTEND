@@ -16,6 +16,7 @@ export default function Dashboard() {
 
 
   useEffect(() => {
+    
     // Function to fetch 'Users Registered'
     const fetchUsersRegistered = async () => {
       try {

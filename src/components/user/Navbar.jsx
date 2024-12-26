@@ -70,7 +70,7 @@ export default function Navbar() {
               </a>
             </li>
             <li>
-              <a href="/admin/login" className="font-bold">
+              <a href="/admin" className="font-bold">
                 Admin
               </a>
             </li>
