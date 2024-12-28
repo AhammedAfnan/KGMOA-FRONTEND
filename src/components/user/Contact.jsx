@@ -2,8 +2,8 @@ import React from "react";
 
 const ContactComponent = () => {
   return (
-    <footer className="bg-gray-800 text-white py-8">
-      <div className="container mx-auto text-center">
+    <footer className="bg-gray-800 text-white py-8 overflow-hidden">
+      <div className="container mx-auto px-4 md:px-8 text-center">
         {/* Title Section */}
         <h1 className="text-xl font-bold mb-4">
           Karnataka Government Medical Officers Association

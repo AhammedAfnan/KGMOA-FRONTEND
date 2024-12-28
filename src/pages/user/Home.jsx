@@ -43,7 +43,7 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
-      <main className="flex flex-col flex-grow">
+      <main className="flex flex-col flex-grow overflow-hidden">
         {/* Banner Section */}
         <div className="flex flex-col md:flex-row mb-5 space-y-5 md:space-y-0">
           {/* Banner */}
@@ -69,7 +69,7 @@ export default function Home() {
           </div>
 
           {/* News Section */}
-          <div className="flex-1 w-full md:w-1/4 bg-white p-6 shadow-lg h-fit">
+          <div className="flex-1 w-full md:w-1/4 bg-white p-6 shadow-lg h-fit overflow-hidden">
             <h3 className="text-xl font-bold text-center text-gray-800 mb-6">
               📰 Headlines
             </h3>

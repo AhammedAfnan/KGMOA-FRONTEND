@@ -1,15 +1,26 @@
 import { useState } from "react";
 import { registerUser } from "../../services/api";
-import { initiatePayment } from "../../services/razorpay";
+// import { initiatePayment } from "../../services/razorpay";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export default function Register() {
-  const fields = ["name", "place", "kmc", "mobile", "regTarrif", "coDel"];
+  const fields = [
+    "name",
+    "place",
+    "kmc",
+    "mobile",
+    "regTarrif",
+    "coDel",
+    "paymentMode",
+    "paymentDate",
+    "utrNumberOrCashReceipt",
+  ];
+
   const fieldDetails = {
     name: { type: "text", placeholder: "Enter your name" },
     place: { type: "text", placeholder: "Enter your place" },
-    kmc : { type: "number", placeholder: "Enter KMC number" },
+    kmc: { type: "number", placeholder: "Enter KMC number" },
     mobile: { type: "tel", placeholder: "Enter your mobile number" },
     regTarrif: {
       type: "select",
@@ -21,7 +32,21 @@ export default function Register() {
       ],
     },
     coDel: { type: "checkbox", label: "Co Del" },
+    paymentMode: {
+      type: "radio",
+      options: [
+        { value: "online", label: "Online" },
+        { value: "cash", label: "Cash" },
+      ],
+    },
+    paymentDate: { type: "date", placeholder: "Select a payment date" },
+    utrNumberOrCashReceipt: {
+      // New input field added here
+      type: "text",
+      placeholder: "Enter UTR Number / Cash Receipt Number",
+    },
   };
+
   const navigate = useNavigate();
   const [formData, setFormData] = useState(
     fields.reduce((acc, field) => {
@@ -43,11 +68,10 @@ export default function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {      
-      
-      const responseData = await registerUser(formData)
-      
-      const userId = responseData.userId;      
+
+    try {
+      const responseData = await registerUser(formData);
+      const userId = responseData.userId;
       toast.success("Registration successful!");
       setFormData(
         fields.reduce((acc, field) => {
@@ -55,7 +79,8 @@ export default function Register() {
           return acc;
         }, {})
       );
-      initiatePayment({...formData,userId},navigate)
+      // initiatePayment({ ...formData, userId }, navigate);
+      navigate("/qr-code", { state: { ...formData, userId } });
     } catch (err) {
       console.error(err);
       toast.error(err.message);
@@ -63,7 +88,7 @@ export default function Register() {
   };
 
   return (
-    <div className="flex min-h-screen justify-center items-center bg-gray-100 px-4">
+    <div className="flex justify-center items-center bg-gray-100 min-h-screen px-4 py-5">
       <div className="w-full sm:w-3/4 md:w-2/3 lg:w-2/5 flex flex-col items-center justify-center px-4 sm:px-8">
         <h2 className="text-2xl sm:text-3xl font-extrabold text-center mb-6 text-black">
           Doctor's Registration
@@ -73,13 +98,13 @@ export default function Register() {
             {fields.map((field) => (
               <div key={field}>
                 {fieldDetails[field].type === "checkbox" ? (
-                  <div className="flex items-center">
+                  <div className="flex items-center justify-start space-x-3">
                     <input
                       type="checkbox"
                       name={field}
                       checked={formData[field]}
                       onChange={handleChange}
-                      className="mr-2"
+                      className="w-5 h-5 text-blue-500 border-gray-300 rounded focus:ring-2 focus:ring-blue-500"
                     />
                     <label className="text-sm font-medium text-gray-700">
                       {fieldDetails[field].label}
@@ -107,6 +132,30 @@ export default function Register() {
                       ))}
                     </select>
                   </>
+                ) : fieldDetails[field].type === "radio" ? (
+                  <>
+                    <label className="block text-sm font-medium text-gray-700 px-2">
+                      {field.charAt(0).toUpperCase() + field.slice(1)}:
+                    </label>
+                    <div className="flex space-x-4 mt-2">
+                      {fieldDetails[field].options.map((option) => (
+                        <label
+                          key={option.value}
+                          className="flex items-center space-x-2"
+                        >
+                          <input
+                            type="radio"
+                            name={field}
+                            value={option.value}
+                            checked={formData[field] === option.value}
+                            onChange={handleChange}
+                            className="w-4 h-4 text-blue-500 border-gray-300 focus:ring-blue-500"
+                          />
+                          <span className="text-gray-700">{option.label}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </>
                 ) : (
                   <>
                     <label className="block text-sm font-medium text-gray-700 px-2">
@@ -119,7 +168,7 @@ export default function Register() {
                       onChange={handleChange}
                       className="w-full mt-3 p-2 px-4 border rounded-lg focus:ring focus:ring-gray-100 focus:outline-none"
                       placeholder={fieldDetails[field].placeholder}
-                      required
+                      required={field !== "paymentDate"}
                     />
                   </>
                 )}
@@ -137,5 +186,5 @@ export default function Register() {
         </div>
       </div>
     </div>
-  );  
+  );
 }

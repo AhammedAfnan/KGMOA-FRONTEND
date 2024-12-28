@@ -14,9 +14,9 @@ export default function About() {
   ];
 
   return (
-    <section className="mt-10 mb-5">
+    <section className="mt-10 mb-5 overflow-hidden">
       <h2 className="text-2xl font-extrabold text-center mb-6">About Us</h2>
-      <div className="grid grid-cols-3 gap-4 px-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 px-4">
         {aboutImages.map((item, index) => (
           <div
             key={index}
