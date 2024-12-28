@@ -113,7 +113,7 @@ export default function Navbar() {
               </a>
             </li>
             <li>
-              <a href="/volunteer/scan" className="font-bold block">
+              <a href="/admin" className="font-bold block">
                 Admin
               </a>
             </li>
