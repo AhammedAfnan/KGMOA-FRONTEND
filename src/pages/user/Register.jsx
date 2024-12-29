@@ -25,10 +25,10 @@ export default function Register() {
     regTarrif: {
       type: "select",
       options: [
-        { value: "RC Single", label: "RC Members (Single) - 10,000" },
-        { value: "RC Couple", label: "RC Members (Couple) - 20,000" },
-        { value: "Delegate Single", label: "Delegate (Single) - 5,000" },
-        { value: "Delegate Couple", label: "Delegates (Couple) - 10,000" },
+        { value: "RC Single", label: "RC Members (Single) - 10,000", amount:10000 },
+        { value: "RC Couple", label: "RC Members (Couple) - 20,000", amount:20000 },
+        { value: "Delegate Single", label: "Delegate (Single) - 5,000", amount:5000 },
+        { value: "Delegate Couple", label: "Delegates (Couple) - 10,000", amount:10000 },
       ],
     },
     coDel: { type: "checkbox", label: "Co Del" },
@@ -69,8 +69,18 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const selectedOption = fieldDetails.regTarrif.options.find(
+      (option) => option.value === formData.regTarrif
+    );
+
     try {
-      const responseData = await registerUser(formData);
+      const responseData = await registerUser({
+        ...formData,
+        regTarrif: {
+          type: formData.regTarrif,
+          amount: selectedOption?.amount || 0,
+        },
+      });
       const userId = responseData.userId;
       toast.success("Registration successful!");
       setFormData(
