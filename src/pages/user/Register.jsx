@@ -12,18 +12,19 @@ export default function Register() {
     "mobile",
     "regTarrif",
     "coDel",
-    "paymentMode",
+    "paymentMode",  
     "paymentDate",
-    "utrNumberOrCashReceipt",
+    "utrNumberOrCashReceipt", 
   ];
 
   const fieldDetails = {
-    name: { type: "text", placeholder: "Enter your name" },
-    place: { type: "text", placeholder: "Enter your place" },
-    kmc: { type: "number", placeholder: "Enter KMC number" },
-    mobile: { type: "tel", placeholder: "Enter your mobile number" },
+    name: { type: "text", placeholder: "Enter your name", label: "Name" },
+    place: { type: "text", placeholder: "Enter your place", label: "Place" },
+    kmc: { type: "number", placeholder: "Enter KMC number", label: "KMC" },
+    mobile: { type: "tel", placeholder: "Enter your mobile number", label: "Mobile" },
     regTarrif: {
       type: "select",
+      label: "Reg Tarrif",
       options: [
         { value: "RC Single", label: "RC Members (Single) - 10,000", amount:10000 },
         { value: "RC Couple", label: "RC Members (Couple) - 20,000", amount:20000 },
@@ -31,18 +32,20 @@ export default function Register() {
         { value: "Delegate Couple", label: "Delegates (Couple) - 10,000", amount:10000 },
       ],
     },
-    coDel: { type: "checkbox", label: "Co Del" },
+    coDel: { type: "checkbox", label: "Co Del",  },
     paymentMode: {
       type: "radio",
+      label: "Payment Mode",
       options: [
         { value: "online", label: "Online" },
         { value: "cash", label: "Cash" },
       ],
     },
-    paymentDate: { type: "date", placeholder: "Select a payment date" },
+    paymentDate: { type: "date", placeholder: "Select a payment date", label: "Payment Date" },
     utrNumberOrCashReceipt: {
       // New input field added here
       type: "text",
+      label: "UTR /Cash Receipt Number",
       placeholder: "Enter UTR Number / Cash Receipt Number",
     },
   };
@@ -123,7 +126,7 @@ export default function Register() {
                 ) : fieldDetails[field].type === "select" ? (
                   <>
                     <label className="block text-sm font-medium text-gray-700 px-2">
-                      {field.charAt(0).toUpperCase() + field.slice(1)}:
+                      {fieldDetails[field].label}:
                     </label>
                     <select
                       name={field}
@@ -145,7 +148,7 @@ export default function Register() {
                 ) : fieldDetails[field].type === "radio" ? (
                   <>
                     <label className="block text-sm font-medium text-gray-700 px-2">
-                      {field.charAt(0).toUpperCase() + field.slice(1)}:
+                      {fieldDetails[field].label}:
                     </label>
                     <div className="flex space-x-4 mt-2">
                       {fieldDetails[field].options.map((option) => (
@@ -169,7 +172,7 @@ export default function Register() {
                 ) : (
                   <>
                     <label className="block text-sm font-medium text-gray-700 px-2">
-                      {field.charAt(0).toUpperCase() + field.slice(1)}:
+                      {fieldDetails[field].label}:
                     </label>
                     <input
                       type={fieldDetails[field].type}

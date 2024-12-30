@@ -56,28 +56,25 @@ const MealsPage = () => {
   };
 
   const handleCheckboxChange = (field) => {
-    // Prevent toggling if the checkbox is already true
-    if (formState[field]) return;
-
-    setFormState((prevState) => ({
-      ...prevState,
-      [field]: !prevState[field],
-    }));
+    if (formState[field]) return; // Prevent toggling if already true
+  
+    const updatedState = { ...formState, [field]: true };
+    setFormState(updatedState);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
       const response = await fetch(`${API_BASE_URL}/save-meal-plan`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          userId, // Pass the userId
-          formState,
+          userId,
+          formState, // Includes checkIn field and other state
         }),
       });
-
+  
       if (response.ok) {
         alert("Form Submitted and Saved!");
         navigate("/volunteer/scan");
@@ -89,6 +86,7 @@ const MealsPage = () => {
       alert("An error occurred.");
     }
   };
+  
 
   return (
     <div className="min-h-screen bg-gray-300 p-8">

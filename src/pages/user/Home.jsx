@@ -70,7 +70,7 @@ export default function Home() {
 
           {/* News Section */}
           <div className="flex-1 w-full md:w-1/4 bg-white p-6 shadow-lg h-fit overflow-hidden">
-            <h3 className="text-xl font-bold text-center text-gray-800 mb-6">
+            <h3 className="text-xl font-extrabold text-center text-gray-800 mb-6">
               📰 Headlines
             </h3>
             {error ? (
@@ -84,7 +84,7 @@ export default function Home() {
                     <li key={index} className="text-sm">
                       <Link
                         to={`/news/${index}`}
-                        className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200"
+                        className="text-black font-bold hover:text-blue-600 transition-colors duration-200"
                       >
                         {title}
                       </Link>

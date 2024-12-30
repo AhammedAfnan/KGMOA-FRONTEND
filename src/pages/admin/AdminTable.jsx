@@ -20,7 +20,7 @@ const AdminTable = () => {
   }, []);
 
   const columns = [
-    { accessorKey: "id", header: "s no." },
+    { accessorKey: "id", header: "S No." },
     { accessorKey: "name", header: "Name" },
     { accessorKey: "place", header: "Place" },
     { accessorKey: "kmcNo", header: "KMC No." },
@@ -33,17 +33,22 @@ const AdminTable = () => {
       header: "Payment Date",
       cell: ({ getValue }) => {
         const dateValue = getValue();
-        if (!dateValue) return "N/A"; // Handle null or missing dates
-        return new Date(dateValue).toLocaleDateString(); // Format valid dates
+        if (!dateValue) return "N/A";
+        return new Date(dateValue).toLocaleDateString();
       },
     },
     { accessorKey: "utrNumberOrCashReceipt", header: "UTR/Cash Receipt" },
     {
-      accessorKey: "attendedAndReceivedKit", // Key for the new column
-      header: "Attended Function and Received Kit",
-      cell: ({ getValue }) => {
-        const value = getValue();
-        return value ? "Yes" : "No"; // Assuming it's a boolean or similar field
+      accessorKey: "attendedAndReceivedKit",
+      header: "Received Kit",
+      cell: ({ row }) => {
+        const attended = row.getValue("attendedAndReceivedKit");
+        const checkInTime = row.original.checkInTime;
+        if (!attended) return "No";
+        if (checkInTime) {
+          return new Date(checkInTime).toLocaleString();
+        }
+        return "Yes";
       },
     },
     {

@@ -71,10 +71,28 @@ export default function Dashboard() {
       }
     };
 
+    const fetchUsersAttendedFunction = async () => {
+      try {
+        const response = await fetch(`${API_BASE_URL}/checkedInCount`);
+        const data = await response.json();
+
+        setStats((prev) =>
+          prev.map((stat) =>
+            stat.title === "Users Attended function"
+              ? { ...stat, count: data.count }
+              : stat
+          )
+        );
+      } catch (error) {
+        toast.error("Error fetching checked-in users: " + error.message);
+      }
+    };
+
     // Call all the fetch functions
     fetchUsersRegistered();
     fetchUsersCheckedIn();
     fetchUsersReceivedKit();
+    fetchUsersAttendedFunction()
   }, []);
   return (
     <div className="min-h-screen bg-gray-100">

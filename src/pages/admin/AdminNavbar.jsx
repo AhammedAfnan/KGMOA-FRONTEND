@@ -108,7 +108,7 @@ export default function AdminNavbar() {
               <a
                 href=""
                 className="block text-lg hover:underline hover:text-gray-300"
-                onClick={""}
+                onClick={() => navigate("/admin/news")}
               >
                 Add news
               </a>
