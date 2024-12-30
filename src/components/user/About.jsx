@@ -2,15 +2,24 @@ import React from "react";
 
 export default function About() {
   const aboutImages = [
-    { src: "/images/img1.jpg", caption: "Secretary KGMOA Vijayapura" },
-    { src: "/images/img3.jpg", caption: "Souvenir committee heads" },
-    { src: "/images/img2.jpg", caption: "Scientific committee heads" },
+    { src: "/images/img11.jpg", caption: "President KGMOA Vijayapura" },
+    { src: "/images/img12.jpg", caption: "Organizing Co Chairman" },
+    { src: "/images/img13.jpg", caption: "Vice President KGMOA Vijayapura" },
+    { src: "/images/img14.jpg", caption: "Treasurer KGMOA Vijayapura" },
+    { src: "/images/img15.jpg", caption: "Executive Committee" },
+    { src: "/images/img16.jpg", caption: "Advisory Committee" },
+    { src: "/images/img17.jpg", caption: "Cultural Committee heads" },
+    { src: "/images/img18.jpg", caption: "Organizing joint secretaries" },
+    { src: "/images/img19.jpg", caption: "Organizing treasurers" },
+    { src: "/images/img3.jpg", caption: "Souvenir committee head" },
+    { src: "/images/img2.jpg", caption: "Scientific committee head" },
     { src: "/images/img4.jpg", caption: "Banquet committee heads" },
     { src: "/images/img5.jpg", caption: "Transport committee heads" },
     { src: "/images/img6.jpg", caption: "Registration committee heads" },
     { src: "/images/img8.jpg", caption: "Chief Patrons of KGMOA" },
     { src: "/images/img9.jpg", caption: "Co ordination committee" },
     { src: "/images/img10.jpg", caption: "Executive committee KGMOA" },
+    { src: "/images/img1.jpg", caption: "Secretary KGMOA Vijayapura" },
   ];
 
   return (

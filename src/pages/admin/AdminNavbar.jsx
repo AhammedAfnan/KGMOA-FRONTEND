@@ -74,7 +74,7 @@ export default function AdminNavbar() {
                   onClick={() => navigate("/admin/news")}
                   className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
                 >
-                  Add news
+                  news
                 </li>
               </ul>
             </div>
@@ -84,7 +84,7 @@ export default function AdminNavbar() {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="md:hidden bg-gray-500 text-white">
+        <div className="md:hidden bg-black text-white">
           <ul className="space-y-2 px-4 py-2">
             <li>
               <a
