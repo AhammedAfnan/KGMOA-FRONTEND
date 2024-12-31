@@ -38,8 +38,15 @@ export default function Conference() {
   return (
     <>
       <Navbar />
-      <div className="bg-gray-400 min-h-screen py-4 sm:py-8 px-4 overflow-x-hidden">
+      <div className="bg-gray-400 min-h-screen py-4 sm:py-8 px-4 overflow-x-hidden" >
         <div className="max-w-7xl mx-auto">
+        <div className="flex justify-center mb-6">
+            <img
+              src='/images/logo2.jpg'
+              alt="Conference Logo"
+              className="h-40 sm:h-52 w-auto object-contain"
+            />
+          </div>
           <select
             className="mb-8 p-2 rounded"
             value={view}

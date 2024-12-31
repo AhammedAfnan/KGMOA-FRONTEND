@@ -7,7 +7,12 @@ export default function Navbar() {
     <nav className="bg-black text-white p-6 overflow-hidden ">
       <div className="flex justify-between items-center">
         {/* Logo */}
-        <div className="text-3xl font-extrabold">
+        <div className="flex items-center text-3xl font-extrabold">
+          <img 
+          src="/images/logo1.jpg" 
+          alt="Logo"
+          className="h-14 w-14 mr-2" 
+          />
           <a href="">KGMOA</a>
         </div>
 
