@@ -19,7 +19,7 @@ export default function Register() {
   const fieldDetails = {
     name: { type: "text", placeholder: "Enter your name", label: "Name" },
     place: { type: "text", placeholder: "Enter your place", label: "Place" },
-    kmc: { type: "number", placeholder: "Enter KMC number", label: "KMC" },
+    kmc: { type: "String", placeholder: "Enter KMC number", label: "KMC" },
     mobile: {
       type: "tel",
       placeholder: "Enter your mobile number",
