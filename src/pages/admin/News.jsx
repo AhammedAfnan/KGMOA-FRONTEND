@@ -9,6 +9,7 @@ const AddNewsPage = () => {
   // State for managing news data and modal visibility
   const [newsList, setNewsList] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isImageCompressed, setIsImageCompressed] = useState(false);
   const [newsData, setNewsData] = useState({
     title: "",
     description: "",
@@ -21,7 +22,7 @@ const AddNewsPage = () => {
   }, []);
 
   // Fetch news from the backend
-  const   fetchNews = async () => {
+  const fetchNews = async () => {
     try {
       const response = await fetch(`${API_BASE_URL}/news`);
       const data = await response.json();
@@ -57,8 +58,10 @@ const AddNewsPage = () => {
           ...prevState,
           image: compressedFile, // Use compressed file
         }));
+        setIsImageCompressed(true); // Indicate compression is done
       } catch (error) {
         console.error("Error compressing the image:", error);
+        setIsImageCompressed(false); // Indicate an error occurred
       }
     }
   };
@@ -66,28 +69,44 @@ const AddNewsPage = () => {
   // Handle modal form submission for adding news
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
+    // Check if image is still being compressed
+    if (!isImageCompressed && newsData.image) {
+      return; // Prevent form submission if image is not fully compressed yet
+    }
+  
     // Close the modal immediately
     setIsModalOpen(false);
-
+  
     try {
       const endpoint = newsData._id
         ? `${API_BASE_URL}/news/${newsData._id}` // Update existing news
         : `${API_BASE_URL}/add-news`; // Add new news
       const method = newsData._id ? "PUT" : "POST";
-
+  
+      // Compress the image again before sending if it's new or changed (if not already compressed)
+      let imageToSend = newsData.image;
+      if (newsData.image && newsData.image instanceof File) {
+        const options = {
+          maxSizeMB: 1, // Maximum file size (1MB)
+          maxWidthOrHeight: 800, // Maximum dimensions (800px)
+          useWebWorker: true,
+        };
+        imageToSend = await imageCompression(newsData.image, options);
+      }
+  
       const formData = new FormData();
       formData.append("title", newsData.title);
       formData.append("description", newsData.description);
-      if (newsData.image) {
-        formData.append("image", newsData.image);
+      if (imageToSend) {
+        formData.append("image", imageToSend); // Append compressed image
       }
-
+  
       const response = await fetch(endpoint, {
         method: method,
         body: formData, // Send FormData instead of JSON
       });
-
+  
       if (response.ok) {
         setNewsData({ title: "", description: "", image: null }); // Reset form data
         fetchNews(); // Refresh the list
@@ -98,6 +117,7 @@ const AddNewsPage = () => {
       console.error("Error adding/updating news:", error);
     }
   };
+  
 
   // Handle delete action
   const handleDelete = async (id) => {
@@ -148,7 +168,7 @@ const AddNewsPage = () => {
               </p>
               {news.image && (
                 <img
-                src={`${API_BASE_URL}/${news.image}`}
+                  src={news.image}
                   alt={news.title}
                   className="max-w-full sm:max-w-md h-auto object-contain rounded-lg shadow-md"
                 />

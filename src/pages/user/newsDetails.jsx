@@ -37,9 +37,18 @@ export default function NewsDetails() {
     <div className="min-h-screen bg-gray-100 py-10 px-5 md:px-20">
       <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8">
         <h1 className="text-3xl font-bold text-gray-800 mb-4">{news.title}</h1>
-        <p className="text-gray-600 text-lg leading-relaxed">
-          {news.description}
-        </p>
+        
+        {/* Display the image */}
+        {news.image && (
+          <img
+            src={news.image}
+            alt={news.title}
+            className="w-full h-auto rounded-lg shadow-md mb-6"
+          />
+        )}
+
+        <p className="text-gray-600 text-lg leading-relaxed">{news.description}</p>
+
         <div className="mt-6 flex justify-end">
           <button
             onClick={() => window.history.back()}
