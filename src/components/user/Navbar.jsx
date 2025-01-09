@@ -60,12 +60,12 @@ export default function Navbar() {
               </a>
             </li>
             <li>
-              <a href="#contact" className="font-bold">
+              <a href="/#contact-us" className="font-bold">
                 Contact Us
               </a>
             </li>
             <li>
-              <a href="#about" className="font-bold">
+              <a href="/#about-us" className="font-bold">
                 About Us
               </a>
             </li>

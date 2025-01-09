@@ -15,6 +15,9 @@ export default function Home() {
     "/images/banner1.jpg",
     "/images/banner2.jpg",
     "/images/banner3.jpg",
+    "/images/banner4.jpg",
+    "/images/banner5.jpg",
+    "/images/banner7.jpg"
   ];
 
   const [newsTitles, setNewsTitles] = useState([]);
@@ -101,12 +104,12 @@ export default function Home() {
         </div>
 
         {/* About Section */}
-        <section id="about">
+        <section id="about-us">
           <About />
         </section>
       </main>
       {/* Contact Section */}
-      <section id="contact">
+      <section id="contact-us">
         <ContactComponent />
       </section>
     </div>
