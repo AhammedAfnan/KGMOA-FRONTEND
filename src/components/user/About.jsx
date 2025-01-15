@@ -2,11 +2,17 @@ import React from "react";
 
 export default function About() {
   const aboutImages = [
+    { src: "/images/img15.jpg", caption: "Executive Committee" },
+    { src: "/images/banner1.jpg", caption: "" },
+    { src: "/images/banner2.jpg", caption: "" },
+    { src: "/images/banner3.jpg", caption: "" },
+    { src: "/images/banner4.jpg", caption: "" },
+    { src: "/images/banner5.jpg", caption: "" },
+    { src: "/images/banner7.jpg", caption: "" },
     // { src: "/images/img11.jpg", caption: "President KGMOA Vijayapura" },
     // { src: "/images/img20.jpg", caption: "Organizing Co Chairman" },
     // { src: "/images/img21.jpg", caption: "Vice President KGMOA Vijayapura" },
     // { src: "/images/img22.jpg", caption: "Treasurer KGMOA Vijayapura" },
-    { src: "/images/img15.jpg", caption: "Executive Committee" },
     // { src: "/images/img23.jpg", caption: "Advisory Committee" },
     // { src: "/images/img17.jpg", caption: "Cultural Committee heads" },
     // { src: "/images/img18.jpg", caption: "Organizing joint secretaries" },
